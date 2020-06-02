@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fr_setting"
+    android:padding="50dp"
+    tools:context=".ui.setting.SettingFragment">
+
+    <Switch
+        android:id="@+id/theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:switchMinWidth="56dp"
+        android:text="Theme"
+        android:checked="false"
+        android:textOff="OFF"
+        android:textOn="ON"/>
+
+</LinearLayout>
