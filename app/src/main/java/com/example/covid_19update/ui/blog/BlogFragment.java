@@ -12,9 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.covid_19update.R;
@@ -27,7 +25,7 @@ public class BlogFragment extends Fragment {
 
     private BlogViewModel galleryViewModel;
     private Button saveBlog;
-    private EditText title,blog;
+    private EditText title, body;
     private PrefManager prefManager;
     private LinearLayout linearLayout;
 
@@ -47,7 +45,7 @@ public class BlogFragment extends Fragment {
         linearLayout = root.findViewById(R.id.fr_blog);
 
         title = root.findViewById(R.id.blogTitle);
-        blog = root.findViewById(R.id.blogBody);
+        body = root.findViewById(R.id.blogBody);
         saveBlog = root.findViewById(R.id.saveBlogBtn);
 
         prefManager = new PrefManager(getContext());
@@ -55,6 +53,8 @@ public class BlogFragment extends Fragment {
 
         if(config.equals("Color.BLACK")) {
             linearLayout.setBackgroundColor(Color.BLACK);
+            title.setBackgroundColor(Color.WHITE);
+            body.setBackgroundColor(Color.WHITE);
         }
         else {
             linearLayout.setBackgroundColor(Color.WHITE);
@@ -64,7 +64,7 @@ public class BlogFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String blogTitle = title.getText().toString();
-                String blogBody = blog.getText().toString();
+                String blogBody = body.getText().toString();
 
                 Blog blog = new Blog(blogTitle,blogBody);
                 // Write a message to the database

@@ -36,7 +36,7 @@ public class BlogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog);
-        this.setTitle("Covid-19 Blog");
+        this.setTitle("Blog");
 
         linearLayout = findViewById(R.id.coronaBlogLayout);
 
@@ -51,6 +51,7 @@ public class BlogActivity extends AppCompatActivity {
 
         if(config.equals("Color.BLACK")) {
             linearLayout.setBackgroundColor(Color.BLACK);
+
         }
         else {
             linearLayout.setBackgroundColor(Color.WHITE);

@@ -1,6 +1,7 @@
 package com.example.covid_19update.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.covid_19update.R;
 import com.example.covid_19update.helper.PrefManager;
@@ -28,20 +30,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class BangladeshDetailsActivity extends AppCompatActivity {
 
     private static final String BASE_URL = "http://corona.lmao.ninja/v2/";
+    private SwipeRefreshLayout swipeRefreshLayout;
     private LinearLayout linearLayout;
     private ApiService apiService;
-    private ImageView cflag;
     private PrefManager prefManager;
-    private TextView webLink,continent,country,population,totalCases,todayCases,totalRecovered,totalDeath,todayDeath,critical,updated;
+    private TextView webLink,totalCases,todayCases,totalRecovered,totalDeath,todayDeath,critical,updated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bangladesh_details);
+        this.setTitle("Bangladesh");
 
+        swipeRefreshLayout = findViewById(R.id.refreshLayout);
         linearLayout = findViewById(R.id.bdDetailsLayout);
-        cflag = findViewById(R.id.bdFlag);
-        continent = findViewById(R.id.continentTv);
         totalCases = findViewById(R.id.totalCasesBdTV);
         todayCases = findViewById(R.id.todayCasesBdTV);
         totalRecovered = findViewById(R.id.totalRecoveredBdTV);
@@ -50,6 +52,17 @@ public class BangladeshDetailsActivity extends AppCompatActivity {
         critical = findViewById(R.id.criticalBdTV);
         updated = findViewById(R.id.lastUpdatedBdTV);
         webLink = findViewById(R.id.webLinkTv);
+
+        loadBdInfo();
+
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadBdInfo();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         webLink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +82,9 @@ public class BangladeshDetailsActivity extends AppCompatActivity {
         else {
             linearLayout.setBackgroundColor(Color.WHITE);
         }
+    }
 
+    private void loadBdInfo() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -86,12 +101,12 @@ public class BangladeshDetailsActivity extends AppCompatActivity {
                 if(response.code() == 200) {
                     //Picasso.get().load(response.body().g).into(cflag);
                     //continent.append(response.body().getcon);
-                    totalCases.append(response.body().getCases()+"");
-                    todayCases.append(response.body().getTodayCases()+"");
-                    totalRecovered.append(response.body().getRecovered()+"");
-                    totalDeath.append(response.body().getDeaths()+"");
-                    todayDeath.append(response.body().getTodayDeaths()+"");
-                    critical.append(response.body().getCritical()+"");
+                    totalCases.setText(response.body().getCases()+"");
+                    todayCases.setText(response.body().getTodayCases()+"");
+                    totalRecovered.setText(response.body().getRecovered()+"");
+                    totalDeath.setText(response.body().getDeaths()+"");
+                    todayDeath.setText(response.body().getTodayDeaths()+"");
+                    critical.setText(response.body().getCritical()+"");
                     // Creating date format
                     DateFormat simple = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
                     // Creating date from milliseconds
@@ -99,14 +114,14 @@ public class BangladeshDetailsActivity extends AppCompatActivity {
                     Date updatedDate = new Date(response.body().getUpdated());
                     // Formatting Date according to the
                     // given format
-                    updated.append(simple.format(updatedDate)+"");
+                    updated.setText(simple.format(updatedDate)+"");
                 }
             }
 
             @Override
             public void onFailure(Call<WorldBd> call, Throwable t) {
+                Toast.makeText(BangladeshDetailsActivity.this,"Failed to load",Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

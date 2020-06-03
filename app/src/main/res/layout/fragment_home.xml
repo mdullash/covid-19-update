@@ -8,6 +8,7 @@
     android:id="@+id/fr_home"
     android:padding="20dp"
     tools:context=".ui.home.HomeFragment">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +23,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Covid-19 World Update: "
+                android:text="World Update: "
                 android:textColor="#000"
                 android:textSize="25sp"/>
             <TextView
@@ -57,8 +58,8 @@
                 android:id="@+id/worldCoronaWebTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="https://www.worldometers.info/coronavirus/"
-                android:textColor="#000"
+                android:text="https://www.worldometers.info"
+                android:textColor="#673AB7"
                 android:textSize="20sp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -78,7 +79,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Covid-19 Bangladesh Update: "
+                android:text="Bangladesh Update: "
                 android:textColor="#000"
                 android:textSize="25sp"/>
             <TextView

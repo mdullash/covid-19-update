@@ -3,6 +3,7 @@ package com.example.covid_19update.ui.home;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.covid_19update.activity.CoronaWorldWebActivity;
 import com.example.covid_19update.R;
@@ -32,10 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment {
 
+    //private SwipeRefreshLayout linearLayout;
     private Button otherCountry,coronaBlog;
     private PrefManager prefManager;
-    private LinearLayout linearLayout;
-    private LinearLayout bdLayout;
+    private LinearLayout linearLayout,bdLayout;
     private TextView worldCoronaWeb;
 
     public static final String BASE_URL = "http://corona.lmao.ninja/v2/";
@@ -47,6 +49,20 @@ public class HomeFragment extends Fragment {
         HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        linearLayout = root.findViewById(R.id.fr_home);
+        //linearLayout.setColorSchemeResources(R.color.colorAccent);
+
+//        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mSwipeRefreshLayout.setRefreshing(true);
+//                    }
+//                }, 2000);
+//            }
+//        });
         //Toast.makeText(getContext(),FirebaseApp.getInstance().getOptions().getProjectId(),Toast.LENGTH_SHORT).show();
         otherCountry = root.findViewById(R.id.otherCountryBtn);
         worldCoronaWeb = root.findViewById(R.id.worldCoronaWebTv);
@@ -73,16 +89,13 @@ public class HomeFragment extends Fragment {
 //                textView.setText(s);
 //            }
 //        });
-        linearLayout = root.findViewById(R.id.fr_home);
+
         bdLayout = root.findViewById(R.id.bdLayout);
-
         coronaBlog = root.findViewById(R.id.corolaBlogBtn);
-
         totalCases = root.findViewById(R.id.totalCasesTV);
         totalRecovered = root.findViewById(R.id.totalRecoveredTV);
         totalDeath = root.findViewById(R.id.totalDeathTV);
         critical = root.findViewById(R.id.criticalTV);
-
         totalCasesBd = root.findViewById(R.id.totalCasesBdTV);
         totalRecoveredBd = root.findViewById(R.id.totalRecoveredBdTV);
         totalDeathBd = root.findViewById(R.id.totalBdDeathTV);
