@@ -20,12 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class CoronaBlogActivity extends AppCompatActivity {
+public class BlogActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private BlogAdapter blogAdapter;
@@ -37,7 +35,7 @@ public class CoronaBlogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_corona_blog);
+        setContentView(R.layout.activity_blog);
         this.setTitle("Covid-19 Blog");
 
         linearLayout = findViewById(R.id.coronaBlogLayout);
@@ -66,14 +64,14 @@ public class CoronaBlogActivity extends AppCompatActivity {
                     Blog blog = dataSnapshot1.getValue(Blog.class);
                     blogList.add(blog);
                 }
-                blogAdapter = new BlogAdapter(CoronaBlogActivity.this,blogList);
+                blogAdapter = new BlogAdapter(BlogActivity.this,blogList);
                 recyclerView.setAdapter(blogAdapter);
                 //Toast.makeText(CoronaBlogActivity.this,blogList.size()+"",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(CoronaBlogActivity.this,"Failed to load",Toast.LENGTH_SHORT).show();
+                Toast.makeText(BlogActivity.this,"Failed to load",Toast.LENGTH_SHORT).show();
             }
         });
     }

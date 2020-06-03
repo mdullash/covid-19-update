@@ -18,7 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.covid_19update.activity.CoronaWorldWebActivity;
 import com.example.covid_19update.R;
 import com.example.covid_19update.activity.BangladeshDetailsActivity;
-import com.example.covid_19update.activity.CoronaBlogActivity;
+import com.example.covid_19update.activity.BlogActivity;
 import com.example.covid_19update.activity.CountryListActivity;
 import com.example.covid_19update.helper.PrefManager;
 import com.example.covid_19update.model.WorldBd;
@@ -99,7 +99,7 @@ public class HomeFragment extends Fragment {
         coronaBlog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), CoronaBlogActivity.class);
+                Intent intent = new Intent(getContext(), BlogActivity.class);
                 startActivity(intent);
             }
         });

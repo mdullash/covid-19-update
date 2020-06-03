@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.CoronaWorldWebActivity"></activity>
         <activity android:name=".activity.CoronaBdWebActivity" />
-        <activity android:name=".activity.CoronaBlogActivity" />
+        <activity android:name=".activity.BlogActivity" />
         <activity android:name=".activity.BangladeshDetailsActivity" />
         <activity android:name=".activity.CountryDetailsActivity" />
         <activity android:name=".activity.SplashScreenActivity">

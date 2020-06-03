@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/coronaBlogLayout"
-    tools:context=".activity.CoronaBlogActivity">
+    tools:context=".activity.BlogActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/coronaBlog"
